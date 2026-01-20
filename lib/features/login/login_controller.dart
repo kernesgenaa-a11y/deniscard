@@ -26,7 +26,7 @@ class _LoginScreenState {
     loginError("");
     loadingIndicator("Sending password reset email");
     try {
-      await pb.collection("_superusers").requestPasswordReset(emailField.text);
+      await pb.collection("superusers").requestPasswordReset(emailField.text);
       await pb.collection("users").requestPasswordReset(emailField.text);
     } catch (e, s) {
       logger("Error during resetting password: $e", s);
