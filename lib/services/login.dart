@@ -42,7 +42,7 @@ class _LoginService extends ObservablePersistingObject {
     if (pb == null) return false;
     if (pb!.authStore.isValid == false) return false;
     if (pb!.authStore.record == null) return false;
-    return pb!.authStore.record!.collectionName == "_superusers";
+    return pb!.authStore.record!.collectionName == "superusers";
   }
 
   void logout() {
@@ -59,7 +59,7 @@ class _LoginService extends ObservablePersistingObject {
 
   Future<String> authenticateWithPassword(String email, String password) async {
     try {
-      final auth = await pb!.collection("_superusers").authWithPassword(email, password);
+      final auth = await pb!.collection("superusers").authWithPassword(email, password);
       adminCollectionId = auth.record.collectionId;
       return auth.token;
     } catch (e) {
@@ -70,7 +70,7 @@ class _LoginService extends ObservablePersistingObject {
 
   Future<String> authenticateWithToken(String token) async {
     try {
-      final auth = await pb!.collection("_superusers").authRefresh();
+      final auth = await pb!.collection("superusers").authRefresh();
       adminCollectionId = auth.record.collectionId;
       return auth.token;
     } catch (e) {
